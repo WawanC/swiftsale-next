@@ -25,6 +25,7 @@ const ProductCard: FC<Props> = (props) => {
             fill={true}
             className={`object-cover`}
             sizes={"100%"}
+            priority={true}
           />
         )}
       </div>
