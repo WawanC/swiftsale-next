@@ -2,7 +2,7 @@ import axios from "axios";
 import { GetProductResponse, GetProductsResponse } from "@/types/product";
 
 const api = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_SERVER_URL}/api/products`,
+  baseURL: `${process.env.PROXY_URL}/api/products`,
 });
 
 export const getProductsApi = async (filter?: { search?: string }) => {
