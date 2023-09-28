@@ -8,7 +8,6 @@ type Params = {
 };
 
 const ProductDetailPage = async ({ params }: { params: Params }) => {
-  console.log("productID: ", params.productId);
   const product = await getProductApi(params.productId);
 
   return (

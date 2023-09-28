@@ -1,18 +1,20 @@
 import axios from "axios";
 import { GetProductResponse, GetProductsResponse } from "@/types/product";
 
+const api = axios.create({
+  baseURL: `${process.env.NEXT_PUBLIC_SERVER_URL}/api/products`,
+});
+
 export const getProductsApi = async (filter?: { search?: string }) => {
-  let url = `${process.env.SERVER_URL}/products`;
+  let url = ``;
 
   if (filter?.search) url += `?search=${filter.search}`;
 
-  const response = await axios.get<GetProductsResponse>(url);
+  const response = await api.get<GetProductsResponse>(url);
   return response.data.products;
 };
 
 export const getProductApi = async (productId: string) => {
-  const response = await axios.get<GetProductResponse>(
-    `${process.env.SERVER_URL}/products/${productId}`,
-  );
+  const response = await api.get<GetProductResponse>(`/${productId}`);
   return response.data.product;
 };

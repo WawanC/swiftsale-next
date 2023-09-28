@@ -9,13 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.35.3",
     "axios": "^1.5.1",
+    "http-proxy": "^1.18.1",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-responsive": "^9.0.2"
   },
   "devDependencies": {
+    "@types/http-proxy": "^1.17.12",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
