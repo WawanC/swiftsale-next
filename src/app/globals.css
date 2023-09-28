@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .btn {
+        @apply bg-secondary py-2 px-4 rounded w-fit font-semibold disabled:opacity-50
+    }
+
+    .input {
+        @apply p-2 border-2 border-secondary rounded-lg outline-accent w-full
+    }
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
