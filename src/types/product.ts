@@ -18,3 +18,8 @@ export type GetProductsResponse = {
   message: string;
   products: Product[];
 };
+
+export type GetProductResponse = {
+  message: string;
+  product: Product;
+};
