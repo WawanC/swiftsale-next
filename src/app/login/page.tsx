@@ -10,7 +10,7 @@ const LoginPage = () => {
   const [enteredUsername, setEnteredUsername] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
-  // const navigate = useNavigate();
+
   const login = useLoginMutation();
   const router = useRouter();
 
