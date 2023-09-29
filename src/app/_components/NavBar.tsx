@@ -6,6 +6,10 @@ import MenuIcon from "@/icons/MenuIcon";
 import Link from "next/link";
 import SearchBar from "@/app/_components/SearchBar";
 import { useMediaQuery } from "react-responsive";
+import AccountIcon from "@/icons/AccountIcon";
+import LogoutIcon from "@/icons/LogoutIcon";
+import { useLogoutMutation } from "@/hooks/Auth";
+import { useAuthStore } from "@/app/store/auth";
 
 const NavBar = () => {
   // const getMe = useGetMe();
@@ -14,6 +18,9 @@ const NavBar = () => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [isSearchMode, setIsSearchMode] = useState(false);
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+
+  const user = useAuthStore((state) => state.user);
+  const logout = useLogoutMutation();
 
   const openSideMenu = useCallback(
     () => setIsSideMenuOpen(true),
@@ -24,6 +31,8 @@ const NavBar = () => {
     () => setIsSideMenuOpen(false),
     [setIsSideMenuOpen],
   );
+
+  const logoutHandler = useCallback(() => logout.mutate(), [logout]);
 
   useEffect(() => {
     if (!isMobile) setIsSearchMode(false);
@@ -93,18 +102,62 @@ const NavBar = () => {
         >
           Search
         </button>
-        <Link
-          href={"/login"}
-          className={`text-secondary underline-offset-8 hover:text-primary hover:underline`}
-        >
-          Login
-        </Link>
-        <Link
-          href={"/register"}
-          className={`text-secondary underline-offset-8 hover:text-primary hover:underline`}
-        >
-          Register
-        </Link>
+
+        {user === null ? (
+          <>
+            <Link
+              href={"/login"}
+              className={`text-secondary underline-offset-8 hover:text-primary hover:underline`}
+            >
+              Login
+            </Link>
+            <Link
+              href={"/register"}
+              className={`text-secondary underline-offset-8 hover:text-primary hover:underline`}
+            >
+              Register
+            </Link>
+          </>
+        ) : (
+          <>
+            <div className={`flex flex-col md:flex-row gap-4`}>
+              <Link href={"/account"}>
+                <span className={`md:hidden`}>My Account</span>
+                <AccountIcon
+                  className={
+                    "w-8 h-8 stroke-secondary hover:stroke-primary hidden md:block"
+                  }
+                />
+              </Link>
+              <Link href={"/cart"} className={`relative hidden md:block`}>
+                {/*{getCarts.totalCount > 0 && (*/}
+                {/*  <div*/}
+                {/*    className={`w-6 aspect-square absolute -top-2 -right-2 */}
+                {/*        bg-primary rounded-full text-accent*/}
+                {/*        flex justify-center items-center text-sm`}*/}
+                {/*  >*/}
+                {/*    {getCarts.totalCount}*/}
+                {/*  </div>*/}
+                {/*)}*/}
+                <span className={`md:hidden`}>My Cart</span>
+                <CartIcon
+                  className={
+                    "w-8 h-8 stroke-secondary hover:stroke-primary hidden md:block"
+                  }
+                />
+              </Link>
+            </div>
+            <div
+              className={"w-1 h-8 border-r-2 border-secondary hidden md:block"}
+            />
+            <button onClick={logoutHandler}>
+              <span className={`md:hidden`}>Logout</span>
+              <LogoutIcon
+                className={`w-8 h-8 stroke-secondary hover:stroke-primary hidden md:block`}
+              />
+            </button>
+          </>
+        )}
 
         {/*{!getMe.data.userId ? (*/}
         {/*  <>*/}

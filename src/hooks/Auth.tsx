@@ -1,8 +1,22 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
-import { loginApi, registerApi } from "@/api/auth";
+import {
+  loginApiClient,
+  logoutApiClient,
+  registerApiClient,
+} from "@/api/client/auth";
 
-export const useLoginMutation = () => useMutation(loginApi);
+export const useLoginMutation = () => {
+  return useMutation(loginApiClient, {
+    onSettled: () => (window.location.href = "/"),
+  });
+};
 
-export const useRegisterMutation = () => useMutation(registerApi);
+export const useRegisterMutation = () => useMutation(registerApiClient);
+
+export const useLogoutMutation = () => {
+  return useMutation(logoutApiClient, {
+    onSettled: () => window.location.reload(),
+  });
+};

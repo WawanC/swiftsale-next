@@ -1,8 +1,8 @@
-import { getProductsApi } from "@/api/product";
+import { getProductsApiServer } from "@/api/server/product";
 import ProductList from "@/app/_components/ProductList";
 
 const Home = async () => {
-  const products = await getProductsApi();
+  const products = await getProductsApiServer();
 
   return (
     <main className={`flex-1 flex flex-col items-center gap-8 p-8`}>

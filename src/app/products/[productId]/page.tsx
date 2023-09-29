@@ -1,4 +1,4 @@
-import { getProductApi } from "@/api/product";
+import { getProductApiServer } from "@/api/server/product";
 import AccountIcon from "@/icons/AccountIcon";
 import CartCounter from "@/app/products/[productId]/_components/CartCounter";
 import PictureDisplay from "@/app/products/[productId]/_components/PictureDisplay";
@@ -8,7 +8,7 @@ type Params = {
 };
 
 const ProductDetailPage = async ({ params }: { params: Params }) => {
-  const product = await getProductApi(params.productId);
+  const product = await getProductApiServer(params.productId);
 
   return (
     <main className={`flex-1 flex justify-center md:items-center`}>

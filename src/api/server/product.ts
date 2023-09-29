@@ -5,7 +5,7 @@ const api = axios.create({
   baseURL: `${process.env.PROXY_URL}/api/products`,
 });
 
-export const getProductsApi = async (filter?: { search?: string }) => {
+export const getProductsApiServer = async (filter?: { search?: string }) => {
   let url = ``;
 
   if (filter?.search) url += `?search=${filter.search}`;
@@ -14,7 +14,7 @@ export const getProductsApi = async (filter?: { search?: string }) => {
   return response.data.products;
 };
 
-export const getProductApi = async (productId: string) => {
+export const getProductApiServer = async (productId: string) => {
   const response = await api.get<GetProductResponse>(`/${productId}`);
   return response.data.product;
 };

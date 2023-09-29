@@ -15,7 +15,8 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-responsive": "^9.0.2"
+    "react-responsive": "^9.0.2",
+    "zustand": "^4.4.1"
   },
   "devDependencies": {
     "@types/http-proxy": "^1.17.12",
