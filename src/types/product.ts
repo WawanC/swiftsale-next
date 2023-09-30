@@ -30,3 +30,10 @@ export type UpdateProductPayload = {
   description?: string;
   pictures?: File[];
 };
+
+export type CreateProductPayload = {
+  title: string;
+  price: number;
+  description: string;
+  pictures?: File[];
+};

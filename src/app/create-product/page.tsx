@@ -1,13 +1,8 @@
-import { getProductApiServer } from "@/api/server/product";
 import { redirect } from "next/navigation";
-import EditProductForm from "@/app/edit-product/[productId]/_components/EditProductForm";
 import { getMeApiServer } from "@/api/server/auth";
+import CreateProductForm from "@/app/create-product/_components/CreateProductForm";
 
-type Params = {
-  productId: string;
-};
-
-const EditProductPage = async ({ params }: { params: Params }) => {
+const CreateProductPage = async () => {
   try {
     await getMeApiServer();
   } catch (e) {
@@ -15,9 +10,6 @@ const EditProductPage = async ({ params }: { params: Params }) => {
   }
 
   try {
-    const product = await getProductApiServer(params.productId);
-    console.log(product);
-
     return (
       <main className={`flex-1 flex justify-center md:items-center`}>
         <section
@@ -25,10 +17,10 @@ const EditProductPage = async ({ params }: { params: Params }) => {
       flex flex-col gap-8 md:py-8`}
         >
           <h1 className={`hidden md:block text-4xl font-bold text-center`}>
-            Edit Product
+            Create Product
           </h1>
 
-          <EditProductForm product={product} />
+          <CreateProductForm />
         </section>
       </main>
     );
@@ -36,4 +28,4 @@ const EditProductPage = async ({ params }: { params: Params }) => {
     redirect("/");
   }
 };
-export default EditProductPage;
+export default CreateProductPage;
