@@ -1,7 +1,7 @@
 import { getProductApiServer } from "@/api/server/product";
 import AccountIcon from "@/icons/AccountIcon";
 import CartCounter from "@/app/products/[productId]/_components/CartCounter";
-import PictureDisplay from "@/app/products/[productId]/_components/PictureDisplay";
+import ProductPictureDisplay from "@/app/_components/ProductPictureDisplay";
 
 type Params = {
   productId: string;
@@ -18,7 +18,7 @@ const ProductDetailPage = async ({ params }: { params: Params }) => {
       >
         {/* Pictures Section */}
         <section className={`md:flex-[1.25] md:p-4`}>
-          <PictureDisplay pictures={product.pictures} />
+          <ProductPictureDisplay pictures={product.pictures} />
         </section>
 
         {/* Info Section */}

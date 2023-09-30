@@ -22,10 +22,6 @@ const NavBar = () => {
 
   const getCarts = useGetCartsQuery();
 
-  useEffect(() => {
-    console.log(getCarts.data);
-  }, [getCarts.data]);
-
   const openSideMenu = useCallback(
     () => setIsSideMenuOpen(true),
     [setIsSideMenuOpen],

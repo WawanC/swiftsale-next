@@ -23,3 +23,10 @@ export type GetProductResponse = {
   message: string;
   product: Product;
 };
+
+export type UpdateProductPayload = {
+  title?: string;
+  price?: number;
+  description?: string;
+  pictures?: File[];
+};

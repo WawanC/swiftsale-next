@@ -1,10 +1,11 @@
 "use client";
 
-import { FormEventHandler, useState } from "react";
+import { FormEventHandler, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRegisterMutation } from "@/hooks/Auth";
 import { useRouter } from "next/navigation";
 import { getServerErrorMessage } from "@/utils/error";
+import { PrefetchKind } from "next/dist/client/components/router-reducer/router-reducer-types";
 
 const RegisterPage = () => {
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -46,7 +47,7 @@ const RegisterPage = () => {
         password: enteredPassword.trim(),
       });
 
-      router.replace("/login");
+      router.push("/login");
     } catch (e) {
       setEnteredPassword("");
       setEnteredPassword2("");
@@ -54,8 +55,14 @@ const RegisterPage = () => {
     }
   };
 
-  const displayedError =
-    error || (register.isError && getServerErrorMessage(register.error));
+  useEffect(() => {
+    router.prefetch("/login", { kind: PrefetchKind.FULL });
+  }, [router]);
+
+  const displayedError = useMemo(
+    () => error || (register.isError && getServerErrorMessage(register.error)),
+    [error, register.isError, register.error],
+  );
 
   return (
     <main className={`flex-1 flex justify-center md:items-center md:py-8`}>

@@ -1,10 +1,11 @@
 "use client";
 
-import { FormEventHandler, useState } from "react";
+import { FormEventHandler, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useLoginMutation } from "@/hooks/Auth";
 import { useRouter } from "next/navigation";
 import { getServerErrorMessage } from "@/utils/error";
+import { PrefetchKind } from "next/dist/client/components/router-reducer/router-reducer-types";
 
 const LoginPage = () => {
   const [enteredUsername, setEnteredUsername] = useState("");
@@ -30,8 +31,14 @@ const LoginPage = () => {
     }
   };
 
-  const displayedError =
-    error || (login.isError && getServerErrorMessage(login.error));
+  useEffect(() => {
+    router.prefetch("/", { kind: PrefetchKind.FULL });
+  }, [router]);
+
+  const displayedError = useMemo(
+    () => error || (login.isError && getServerErrorMessage(login.error)),
+    [error, login.isError, login.error],
+  );
 
   return (
     <main className={`flex-1 flex justify-center md:items-center`}>

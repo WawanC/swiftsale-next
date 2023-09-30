@@ -9,7 +9,7 @@ type Props = {
   pictures: Picture[];
 };
 
-const PictureDisplay: FC<Props> = (props) => {
+const ProductPictureDisplay: FC<Props> = (props) => {
   const [activePictureIdx, setActivePictureIdx] = useState(0);
 
   const activePicture = useMemo(() => {
@@ -78,4 +78,4 @@ const PictureDisplay: FC<Props> = (props) => {
   );
 };
 
-export default PictureDisplay;
+export default ProductPictureDisplay;
