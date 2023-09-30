@@ -1,9 +1,5 @@
-import axios from "axios";
 import { CreateProductPayload, UpdateProductPayload } from "@/types/product";
-
-const api = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_SERVER_URL}/api/products`,
-});
+import { privateApiClient } from "@/api/client/axios";
 
 export const createProductApiClient = async (data: CreateProductPayload) => {
   const formData = new FormData();
@@ -17,7 +13,7 @@ export const createProductApiClient = async (data: CreateProductPayload) => {
       formData.append("pictures", picture);
     }
 
-  await api.post("/", formData);
+  await privateApiClient.post("/products", formData);
 };
 
 export const updateProductApiClient = async (payload: {
@@ -36,5 +32,5 @@ export const updateProductApiClient = async (payload: {
       formData.append("pictures", picture);
     }
 
-  await api.put(`/${payload.productId}`, formData);
+  await privateApiClient.put(`/products/${payload.productId}`, formData);
 };

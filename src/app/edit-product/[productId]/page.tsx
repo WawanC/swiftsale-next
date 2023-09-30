@@ -1,18 +1,14 @@
 import { getProductApiServer } from "@/api/server/product";
 import { redirect } from "next/navigation";
 import EditProductForm from "@/app/edit-product/[productId]/_components/EditProductForm";
-import { getMeApiServer } from "@/api/server/auth";
+import { checkIsAuthServer } from "@/utils/auth";
 
 type Params = {
   productId: string;
 };
 
 const EditProductPage = async ({ params }: { params: Params }) => {
-  try {
-    await getMeApiServer();
-  } catch (e) {
-    redirect("/login");
-  }
+  await checkIsAuthServer();
 
   try {
     const product = await getProductApiServer(params.productId);

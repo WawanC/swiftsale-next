@@ -1,13 +1,9 @@
 import { redirect } from "next/navigation";
-import { getMeApiServer } from "@/api/server/auth";
 import CreateProductForm from "@/app/create-product/_components/CreateProductForm";
+import { checkIsAuthServer } from "@/utils/auth";
 
 const CreateProductPage = async () => {
-  try {
-    await getMeApiServer();
-  } catch (e) {
-    redirect("/login");
-  }
+  await checkIsAuthServer();
 
   try {
     return (
