@@ -1,13 +1,26 @@
-import { FC } from "react";
+"use client";
+
+import { FC, MouseEventHandler, useCallback } from "react";
 import { Product } from "@/types/product";
 import Link from "next/link";
 import Image from "next/image";
+import { useAddCartMutation } from "@/hooks/Cart";
 
 type Props = {
   product: Product;
 };
 
 const ProductCard: FC<Props> = (props) => {
+  const addCart = useAddCartMutation();
+
+  const addCartHandler: MouseEventHandler = useCallback(
+    (e) => {
+      e.preventDefault();
+      addCart.mutate({ productId: props.product.id, count: 1 });
+    },
+    [addCart, props.product.id],
+  );
+
   return (
     <Link
       href={`/products/${props.product.id}`}
@@ -33,7 +46,9 @@ const ProductCard: FC<Props> = (props) => {
         <h1 className={`line-clamp-2`}>{props.product.title}</h1>
         <h2 className={`font-bold`}>$ {props.product.price}</h2>
         <div className={`flex justify-center`}>
-          <button className={`btn text-sm`}>Add to Cart</button>
+          <button className={`btn text-sm`} onClick={addCartHandler}>
+            Add to Cart
+          </button>
         </div>
       </div>
     </Link>

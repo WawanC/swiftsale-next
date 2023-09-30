@@ -1,7 +1,7 @@
 import { getProductApiServer } from "@/api/server/product";
 import AccountIcon from "@/icons/AccountIcon";
-import CartCounter from "@/app/products/[productId]/_components/CartCounter";
 import ProductPictureDisplay from "@/app/_components/ProductPictureDisplay";
+import AddCartInput from "@/app/products/[productId]/_components/AddCartInput";
 
 type Params = {
   productId: string;
@@ -47,10 +47,7 @@ const ProductDetailPage = async ({ params }: { params: Params }) => {
           </div>
 
           {/*  Add Cart button */}
-          <div className={`flex flex-col gap-4 items-center`}>
-            <CartCounter />
-            <button className={`btn`}>Add to Cart</button>
-          </div>
+          <AddCartInput productId={product.id} />
         </section>
       </article>
     </main>

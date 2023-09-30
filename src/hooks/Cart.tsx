@@ -1,5 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
-import { getCartsApiClient } from "@/api/client/cart";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  createCartApiClient,
+  deleteCartApiClient,
+  getCartsApiClient,
+} from "@/api/client/cart";
 import { useAuthStore } from "@/app/store/auth";
 
 export const useGetCartsQuery = () => {
@@ -20,5 +24,20 @@ export const useGetCartsQuery = () => {
     });
 
     return Promise.resolve({ items, totalCount, totalPrice });
+  });
+};
+
+export const useAddCartMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(createCartApiClient, {
+    onSuccess: () => queryClient.invalidateQueries(["carts"]),
+  });
+};
+
+export const useDeleteCartMutation = () => {
+  const queryClient = useQueryClient();
+  return useMutation(deleteCartApiClient, {
+    onSuccess: () => queryClient.invalidateQueries(["carts"]),
   });
 };
