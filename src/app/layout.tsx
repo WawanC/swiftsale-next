@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 import NavBar from "@/app/_components/NavBar";
 import Providers from "@/app/providers";
 import { getMeApiServer } from "@/api/server/auth";
-import StoreInitializer from "@/app/store/StoreInitializer";
+import StoreInitializer from "@/store/StoreInitializer";
 import { User } from "@/types/user";
 
 const font = Inter({ subsets: ["latin"] });

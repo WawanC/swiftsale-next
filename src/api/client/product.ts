@@ -1,5 +1,9 @@
-import { CreateProductPayload, UpdateProductPayload } from "@/types/product";
-import { privateApiClient } from "@/api/client/axios";
+import {
+  CreateProductPayload,
+  GetProductsResponse,
+  UpdateProductPayload,
+} from "@/types/product";
+import { apiClient, privateApiClient } from "@/api/client/axios";
 
 export const createProductApiClient = async (data: CreateProductPayload) => {
   const formData = new FormData();
@@ -33,4 +37,13 @@ export const updateProductApiClient = async (payload: {
     }
 
   await privateApiClient.put(`/products/${payload.productId}`, formData);
+};
+
+export const getProductsApiClient = async () => {
+  const response = await apiClient.get<GetProductsResponse>("/products");
+  return response.data.products;
+};
+
+export const deleteProductApiClient = async (productId: string) => {
+  await privateApiClient.delete(`/products/${productId}`);
 };

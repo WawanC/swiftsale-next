@@ -1,6 +1,6 @@
 "use client";
 import { FC, useRef } from "react";
-import { useAuthStore } from "@/app/store/auth";
+import { useAuthStore } from "@/store/auth";
 import { User } from "@/types/user";
 
 type Props = {

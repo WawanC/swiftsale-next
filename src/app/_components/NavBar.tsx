@@ -9,7 +9,7 @@ import { useMediaQuery } from "react-responsive";
 import AccountIcon from "@/icons/AccountIcon";
 import LogoutIcon from "@/icons/LogoutIcon";
 import { useLogoutMutation } from "@/hooks/Auth";
-import { useAuthStore } from "@/app/store/auth";
+import { useAuthStore } from "@/store/auth";
 import { useGetCartsQuery } from "@/hooks/Cart";
 
 const NavBar = () => {

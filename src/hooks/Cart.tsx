@@ -4,7 +4,7 @@ import {
   deleteCartApiClient,
   getCartsApiClient,
 } from "@/api/client/cart";
-import { useAuthStore } from "@/app/store/auth";
+import { useAuthStore } from "@/store/auth";
 
 export const useGetCartsQuery = () => {
   const user = useAuthStore((state) => state.user);
