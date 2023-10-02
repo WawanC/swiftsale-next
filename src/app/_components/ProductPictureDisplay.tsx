@@ -33,10 +33,7 @@ const ProductPictureDisplay: FC<Props> = (props) => {
   return (
     <div className={`w-full flex flex-col gap-8 items-center`}>
       {/* Picture Component */}
-      <div
-        className={`w-full md:w-3/4 aspect-square bg-neutral-200 md:border 
-            md:rounded shadow overflow-hidden relative`}
-      >
+      <div className={`w-full md:w-3/4 aspect-square overflow-hidden relative`}>
         {props.pictures.length <= 0 ? (
           <div className={`w-full h-full object-cover bg-neutral-400`} />
         ) : (
@@ -45,7 +42,7 @@ const ProductPictureDisplay: FC<Props> = (props) => {
             alt={activePicture.public_id}
             fill={true}
             sizes={"100%"}
-            className={`object-cover`}
+            className={`object-contain p-8`}
             priority={true}
           />
         )}
