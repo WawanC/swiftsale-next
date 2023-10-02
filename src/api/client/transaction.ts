@@ -1,4 +1,4 @@
-import { apiClient } from "@/api/client/axios";
+import { apiClient, privateApiClient } from "@/api/client/axios";
 import { GetTransactionsResponse } from "@/types/transaction";
 
 export const getTransactionsApiClient = async () => {
@@ -11,5 +11,12 @@ export const getTransactionsApiClient = async () => {
     );
     transaction.totalPrice = totalPrice;
   });
-  return response.data.transactions;
+
+  return response.data.transactions.sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+  );
+};
+
+export const createTransactionApiClient = async () => {
+  return await privateApiClient.post("/transactions");
 };
