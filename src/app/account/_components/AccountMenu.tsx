@@ -1,19 +1,20 @@
 "use client";
 
-import { useMemo } from "react";
-import { useSearchParams } from "next/navigation";
+import { useCallback, useMemo } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import AddIcon from "@/icons/AddIcon";
 import MyProductList from "@/app/account/_components/MyProductList";
 import MyTransactionList from "@/app/account/_components/MyTransactionList";
 
 enum Menu {
-  Products,
-  Transactions,
+  Products = "products",
+  Transactions = "transactions",
 }
 
 const AccountMenu = () => {
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const selectedMenu = useMemo(
     () =>
@@ -22,25 +23,33 @@ const AccountMenu = () => {
         : Menu.Products,
     [searchParams],
   );
+
+  const changeMenu = useCallback(
+    (menu: Menu) => {
+      router.push(`/account?menu=${menu}`);
+    },
+    [router],
+  );
+
   return (
     <>
       <div className={`flex gap-2 md:gap-4 text-sm md:text-base`}>
-        <Link
+        <button
           className={`btn flex-1 bg-primary border-2 text-center ${
             selectedMenu === Menu.Products && "bg-secondary border-none"
           }`}
-          href={`/account?menu=products`}
+          onClick={() => changeMenu(Menu.Products)}
         >
           My Products
-        </Link>
-        <Link
+        </button>
+        <button
           className={`btn flex-1 bg-primary border-2 text-center ${
             selectedMenu === Menu.Transactions && "bg-secondary border-none"
           }`}
-          href={`/account?menu=transactions`}
+          onClick={() => changeMenu(Menu.Transactions)}
         >
           My Transactions
-        </Link>
+        </button>
       </div>
 
       {/*  Menu Content */}
