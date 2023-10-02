@@ -11,11 +11,13 @@ import LogoutIcon from "@/icons/LogoutIcon";
 import { useLogoutMutation } from "@/hooks/Auth";
 import { useAuthStore } from "@/store/auth";
 import { useGetCartsQuery } from "@/hooks/Cart";
+import { useRouter } from "next/navigation";
 
 const NavBar = () => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [isSearchMode, setIsSearchMode] = useState(false);
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  const router = useRouter();
 
   const user = useAuthStore((state) => state.user);
   const logout = useLogoutMutation();
@@ -23,13 +25,13 @@ const NavBar = () => {
   const getCarts = useGetCartsQuery();
 
   const openSideMenu = useCallback(
-    () => setIsSideMenuOpen(true),
-    [setIsSideMenuOpen],
+    () => !isSideMenuOpen && setIsSideMenuOpen(true),
+    [isSideMenuOpen, setIsSideMenuOpen],
   );
 
   const closeSideMenu = useCallback(
-    () => setIsSideMenuOpen(false),
-    [setIsSideMenuOpen],
+    () => isSideMenuOpen && setIsSideMenuOpen(false),
+    [isSideMenuOpen, setIsSideMenuOpen],
   );
 
   const logoutHandler = useCallback(() => logout.mutate(), [logout]);
@@ -95,11 +97,25 @@ const NavBar = () => {
         } bg-accent left-0 top-0 bottom-0 z-20
         fixed flex-col gap-8 w-[50%] px-8 py-32 h-screen`}
       >
+        {/* Home icon for mobile side navbar */}
+        <Link
+          href={"/"}
+          className={`text-2xl font-bold md:hidden pb-8`}
+          onClick={() => {
+            closeSideMenu();
+            setIsSearchMode(false);
+          }}
+        >
+          SwiftSale
+        </Link>
+
+        {/* Search icon for mobile side navbar */}
         <button
           className={"md:hidden"}
           onClick={() => {
             setIsSideMenuOpen(false);
             setIsSearchMode(true);
+            router.push("/");
           }}
         >
           Search
@@ -110,12 +126,14 @@ const NavBar = () => {
             <Link
               href={"/login"}
               className={`text-secondary underline-offset-8 hover:text-primary hover:underline`}
+              onClick={closeSideMenu}
             >
               Login
             </Link>
             <Link
               href={"/register"}
               className={`text-secondary underline-offset-8 hover:text-primary hover:underline`}
+              onClick={closeSideMenu}
             >
               Register
             </Link>
@@ -123,7 +141,7 @@ const NavBar = () => {
         ) : (
           <>
             <div className={`flex flex-col md:flex-row gap-4`}>
-              <Link href={"/account"}>
+              <Link href={"/account"} onClick={closeSideMenu}>
                 <span className={`md:hidden`}>My Account</span>
                 <AccountIcon
                   className={
@@ -131,7 +149,11 @@ const NavBar = () => {
                   }
                 />
               </Link>
-              <Link href={"/cart"} className={`relative hidden md:block`}>
+              <Link
+                href={"/cart"}
+                className={`relative hidden md:block`}
+                onClick={closeSideMenu}
+              >
                 {getCarts.data && getCarts.data.totalCount > 0 && (
                   <div
                     className={`w-6 aspect-square absolute -top-2 -right-2 
