@@ -26,8 +26,8 @@ const ProductDetailPage = async ({ params }: { params: Params }) => {
           className={`flex-1 md:border-x flex flex-col items-center 
               px-8 py-4 gap-4 md:gap-8`}
         >
-          <h1 className={"text-4xl"}>{product.title}</h1>
-          <h2 className={`text-3xl font-bold`}>${product.price}</h2>
+          <h1 className={"text-4xl text-center"}>{product.title}</h1>
+          <h2 className={`text-3xl font-bold text-center`}>${product.price}</h2>
           <p
             className={`font-sans text-base font-light italic w-full text-center`}
           >

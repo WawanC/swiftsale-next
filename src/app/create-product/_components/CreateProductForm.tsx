@@ -12,6 +12,7 @@ import ProductPictureDisplay from "@/app/_components/ProductPictureDisplay";
 import { useCreateProductMutation } from "@/hooks/Product";
 import { useRouter } from "next/navigation";
 import { PrefetchKind } from "next/dist/client/components/router-reducer/router-reducer-types";
+import LoadingIndicator from "@/app/_components/LoadingIndicator";
 
 const CreateProductForm = () => {
   const [enteredTitle, setEnteredTitle] = useState("");
@@ -40,7 +41,7 @@ const CreateProductForm = () => {
           pictures: pictures,
         });
 
-        router.replace("/");
+        window.location.href = "/";
       } catch (e) {
         console.error(e);
       }
@@ -76,8 +77,8 @@ const CreateProductForm = () => {
 
   if (createProduct.isLoading)
     return (
-      <div className={`flex justify-center p-4`}>
-        <span className={`text-2xl font-bold`}>Loading...</span>
+      <div className={`flex justify-center py-8`}>
+        <LoadingIndicator size={50} />
       </div>
     );
 
