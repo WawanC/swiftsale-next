@@ -5,6 +5,7 @@ import { useCreateTransactionMutation } from "@/hooks/Transaction";
 import { useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { PrefetchKind } from "next/dist/client/components/router-reducer/router-reducer-types";
+import LoadingIndicator from "@/app/_components/LoadingIndicator";
 
 const CartInfo = () => {
   const getCarts = useGetCartsQuery();
@@ -22,8 +23,8 @@ const CartInfo = () => {
 
   if (getCarts.isLoading)
     return (
-      <div className={`flex justify-center p-4`}>
-        <span className={`text-2xl font-bold`}>Loading...</span>
+      <div className={`flex justify-center py-8`}>
+        <LoadingIndicator size={50} />
       </div>
     );
 

@@ -2,6 +2,7 @@
 
 import { useGetCartsQuery } from "@/hooks/Cart";
 import CartItem from "@/app/cart/_components/CartItem";
+import LoadingIndicator from "@/app/_components/LoadingIndicator";
 
 const CartList = () => {
   const getCarts = useGetCartsQuery();
@@ -9,7 +10,7 @@ const CartList = () => {
   if (getCarts.isLoading)
     return (
       <div className={`flex justify-center py-8`}>
-        <p className={`text-4xl font-bold`}>Loading...</p>
+        <LoadingIndicator size={50} />
       </div>
     );
 
