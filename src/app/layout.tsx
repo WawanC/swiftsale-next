@@ -25,7 +25,7 @@ export default async function RootLayout({
   try {
     user = await getMeApiServer();
   } catch (e) {
-    console.log(e);
+    console.log("Unauthorized access");
   }
 
   return (

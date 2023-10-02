@@ -12,7 +12,6 @@ const EditProductPage = async ({ params }: { params: Params }) => {
 
   try {
     const product = await getProductApiServer(params.productId);
-    console.log(product);
 
     return (
       <main className={`flex-1 flex justify-center md:items-center`}>

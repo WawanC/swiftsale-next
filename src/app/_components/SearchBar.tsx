@@ -1,32 +1,38 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { ChangeEventHandler, useCallback, useRef, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const SearchBar = () => {
-  // const [searchParams] = useSearchParams();
+  const searchParams = useSearchParams();
   const [enteredKeyword, setEnteredKeyword] = useState(
-    // searchParams.get("search") || "",
-    "",
+    searchParams.get("search") || "",
   );
-  const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
-  const [isTouched, setIsTouched] = useState(false);
-  // const navigate = useNavigate();
-  // const location = useLocation();
+  const router = useRouter();
+  const timer = useRef<NodeJS.Timeout>();
 
-  useEffect(() => {
-    if (timer) clearTimeout(timer);
+  const changeHandler: ChangeEventHandler<HTMLInputElement> = useCallback(
+    (e) => {
+      clearTimeout(timer.current);
+      setEnteredKeyword(e.target.value.trim());
 
-    // const searchKeyword = enteredKeyword.trim();
-    if (!isTouched) return;
+      const searchKeyword = e.target.value.trim();
+      if (searchKeyword.length < 1) {
+        router.push("/products");
+      } else {
+        timer.current = setTimeout(async () => {
+          router.push(`/products?search=${searchKeyword}`);
+        }, 500);
+      }
+    },
+    [router],
+  );
 
-    setTimer(
-      setTimeout(async () => {
-        // let url = "/";
-        // if (searchKeyword.length > 0) url = `/products?search=${searchKeyword}`;
-        // if (location.pathname !== url) navigate(url);
-      }, 500),
-    );
-  }, [enteredKeyword, isTouched, timer]);
+  const focusHandler = useCallback(() => {
+    const searchKeyword = enteredKeyword.trim();
+    if (searchKeyword.length < 1) return;
+    router.push(`/products?search=${searchKeyword}`);
+  }, [enteredKeyword, router]);
 
   return (
     <input
@@ -34,10 +40,8 @@ const SearchBar = () => {
       className={`min-w-[50%] rounded text-xl p-1 px-4 text-accent outline-none`}
       placeholder={"Search Products..."}
       value={enteredKeyword}
-      onChange={(e) => {
-        setIsTouched(true);
-        setEnteredKeyword(e.target.value);
-      }}
+      onChange={changeHandler}
+      onFocus={focusHandler}
     />
   );
 };
