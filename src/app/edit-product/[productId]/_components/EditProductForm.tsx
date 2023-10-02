@@ -78,7 +78,6 @@ const EditProductForm: FC<Props> = (props) => {
       enteredPictures,
       updateProduct,
       props.product.id,
-      router,
     ],
   );
 

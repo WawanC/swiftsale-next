@@ -52,7 +52,6 @@ const CreateProductForm = () => {
       enteredDescription,
       enteredPictures,
       createProduct,
-      router,
     ],
   );
 
