@@ -12,6 +12,7 @@ import { useLogoutMutation } from "@/hooks/Auth";
 import { useAuthStore } from "@/store/auth";
 import { useGetCartsQuery } from "@/hooks/Cart";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const NavBar = () => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
@@ -67,9 +68,17 @@ const NavBar = () => {
       {/* App Logo */}
       <Link
         href={"/"}
-        className={`text-2xl font-bold ${isSearchMode && "hidden"}`}
+        className={`${isSearchMode && "hidden"}
+        flex items-center gap-1`}
       >
-        SwiftSale
+        <Image
+          src={"/AppLogo_Dark.svg"}
+          alt={"app_logo"}
+          width={30}
+          height={30}
+          className={"mb-2 hidden md:block"}
+        />
+        <span className={`text-xl md:text-2xl font-bold`}>SwiftSale</span>
       </Link>
 
       {/* Search Bar */}
@@ -100,13 +109,20 @@ const NavBar = () => {
         {/* Home icon for mobile side navbar */}
         <Link
           href={"/"}
-          className={`text-2xl font-bold md:hidden pb-8`}
+          className={`text-2xl font-bold md:hidden pb-8 
+          flex flex-col items-center gap-4`}
           onClick={() => {
             closeSideMenu();
             setIsSearchMode(false);
           }}
         >
-          SwiftSale
+          <Image
+            src={"/AppLogo_Dark.svg"}
+            alt={"app_logo"}
+            width={75}
+            height={75}
+          />
+          <span>SwiftSale</span>
         </Link>
 
         {/* Search icon for mobile side navbar */}

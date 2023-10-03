@@ -9,7 +9,15 @@ const Landing = async () => {
     <main
       className={`flex-1 bg-accent text-primary flex flex-col items-center gap-32`}
     >
-      <h1 className={`text-2xl font-bold absolute top-4`}>SwiftSale</h1>
+      <div className={`absolute top-4 flex items-end gap-2`}>
+        <Image
+          src={"/AppLogo_Dark.svg"}
+          alt={"app_logo"}
+          width={40}
+          height={40}
+        />
+        <span className={`text-2xl font-bold`}>SwiftSale</span>
+      </div>
       <article
         className={`min-h-screen flex flex-col justify-center items-center text-center 
         gap-8 px-4`}
