@@ -26,12 +26,10 @@ const ProductCard: FC<Props> = (props) => {
     <Link
       href={`/products/${props.product.id}`}
       className={`flex flex-col shadow border-2 border-secondary 
-      rounded-lg h-fit text-base md:text-xl overflow-hidden 
-      w-[45%] md:w-fit items-center`}
+      rounded-lg text-base md:text-xl overflow-hidden 
+      w-[45%] md:w-[13%] items-center`}
     >
-      <div
-        className={`w-full md:w-[200px] aspect-square overflow-hidden relative`}
-      >
+      <div className={`w-full h-[200px] overflow-hidden relative`}>
         {props.product.pictures.length > 0 && (
           <Image
             src={props.product.pictures[0].url}
@@ -43,7 +41,7 @@ const ProductCard: FC<Props> = (props) => {
           />
         )}
       </div>
-      <div className={`flex flex-col gap-4 w-full px-4 py-2`}>
+      <div className={`flex-1 flex flex-col justify-between gap-4 p-4`}>
         <div className={`flex flex-col`}>
           <h1 className={`line-clamp-2`}>{props.product.title}</h1>
           <h2 className={`font-bold`}>$ {props.product.price}</h2>

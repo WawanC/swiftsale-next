@@ -29,7 +29,7 @@ const ProductDetailPage = async ({ params }: { params: Params }) => {
           <h1 className={"text-4xl text-center"}>{product.title}</h1>
           <h2 className={`text-3xl font-bold text-center`}>${product.price}</h2>
           <p
-            className={`font-sans text-base font-light italic w-full text-center`}
+            className={`font-sans text-base font-light italic w-full text-justify`}
           >
             {product.description}
           </p>

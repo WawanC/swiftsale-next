@@ -31,7 +31,7 @@ const CartInfo = () => {
   return (
     getCarts.data && (
       <>
-        <div className={`flex flex-col gap-4 md:gap-2 p-4 md:p-8`}>
+        <div className={`flex flex-col gap-4 md:gap-8 p-4 md:p-8`}>
           <span className={`text-3xl`}>Total Price :</span>
           <span className={`text-4xl font-semibold text-center`}>
             ${getCarts.data.totalPrice}

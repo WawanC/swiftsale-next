@@ -33,10 +33,10 @@ const CartItem: FC<Props> = (props) => {
   );
 
   return (
-    <li className={`flex border-2 shadow rounded gap-4 items-center h-[110px]`}>
+    <li className={`flex border-2 shadow rounded gap-4 items-center h-[125px]`}>
       {/*  Cart Item Picture */}
       <div
-        className={`w-20 md:w-20 h-full bg-secondary overflow-hidden relative`}
+        className={`w-20 md:w-20 h-full bg-primary overflow-hidden relative`}
       >
         {props.item.product.pictures.length > 0 && (
           <Image
@@ -44,14 +44,16 @@ const CartItem: FC<Props> = (props) => {
             alt={props.item.product.pictures[0].public_id}
             fill={true}
             sizes={"100%"}
-            className={`object-cover`}
+            className={`object-contain`}
           />
         )}
       </div>
 
-      <div className={`flex-1 flex flex-row md:p-2 md:pr-6 pr-8`}>
-        <div className={`flex-1 flex flex-col gap-4`}>
-          <h1 className={`text-xl md:text-2xl`}>{props.item.product.title}</h1>
+      <div className={`flex-1 flex flex-row md:p-2 md:pr-8 pr-8`}>
+        <div className={`flex-1 flex flex-col gap-2`}>
+          <h1 className={`text-xl md:text-2xl line-clamp-2`}>
+            {props.item.product.title}
+          </h1>
           {/* Cart Item Counter Component */}
           <div className={`flex gap-2 px-4 py-2 rounded border text-xl w-fit`}>
             <button onClick={deleteCartHandler}>-</button>

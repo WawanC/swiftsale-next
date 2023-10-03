@@ -51,7 +51,7 @@ const Landing = async () => {
                 rounded-lg text-base md:text-xl overflow-hidden 
                 items-center bg-secondary text-accent h-full`}
               >
-                <div className={`w-full h-[200px] overflow-hidden relative `}>
+                <div className={`w-full h-[200px] overflow-hidden relative`}>
                   {product.pictures.length > 0 && (
                     <Image
                       src={product.pictures[0].url}

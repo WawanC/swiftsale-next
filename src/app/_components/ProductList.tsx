@@ -8,7 +8,9 @@ type Props = {
 
 const ProductList: FC<Props> = (props) => {
   return (
-    <ul className={`w-full flex flex-wrap gap-2 md:gap-4 justify-center`}>
+    <ul
+      className={`w-full flex flex-wrap gap-2 md:gap-4 justify-center items-stretch`}
+    >
       {props.products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}

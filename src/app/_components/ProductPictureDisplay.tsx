@@ -33,9 +33,11 @@ const ProductPictureDisplay: FC<Props> = (props) => {
   return (
     <div className={`w-full flex flex-col gap-8 items-center`}>
       {/* Picture Component */}
-      <div className={`w-full md:w-3/4 aspect-square overflow-hidden relative`}>
+      <div
+        className={`w-full md:w-3/4 aspect-square overflow-hidden relative rounded`}
+      >
         {props.pictures.length <= 0 ? (
-          <div className={`w-full h-full object-cover bg-neutral-400`} />
+          <div className={`w-full h-full bg-neutral-400`} />
         ) : (
           <Image
             src={activePicture.url}
