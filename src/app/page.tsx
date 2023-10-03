@@ -5,7 +5,6 @@ import Landing from "@/app/_components/Landing";
 import NavBar from "@/app/_components/NavBar";
 
 const Home = async () => {
-  console.log("entering app page");
   try {
     await checkIsAuthServer();
   } catch (e) {
