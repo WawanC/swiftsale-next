@@ -1,10 +1,9 @@
-import AccountIcon from "@/icons/AccountIcon";
+import AccountMenu from "@/app/(navigation)/account/_components/AccountMenu";
 import { checkIsAuthServer } from "@/utils/auth";
 import { getMeApiServer } from "@/api/server/auth";
-import AccountMenu from "@/app/(navigation)/account/_components/AccountMenu";
+import AccountIcon from "@/icons/AccountIcon";
 
 const AccountPage = async () => {
-  console.log("loading account page");
   await checkIsAuthServer();
 
   const user = await getMeApiServer();
@@ -14,7 +13,7 @@ const AccountPage = async () => {
       <article
         className={`min-w-full md:min-w-[50%] flex flex-col gap-4 px-8 overflow-hidden`}
       >
-        {/*    Account Info Section */}
+        {/* Account Info Section*/}
         <section
           className={`flex flex-col md:flex-row md:border-2 rounded-lg md:shadow p-8`}
         >

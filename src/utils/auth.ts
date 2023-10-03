@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 
 export const checkIsAuthServer = async () => {
   try {
-    await getMeApiServer();
+    return await getMeApiServer();
   } catch (e) {
     redirect("/login");
   }
