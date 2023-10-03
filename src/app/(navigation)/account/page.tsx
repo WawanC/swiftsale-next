@@ -4,6 +4,7 @@ import { getMeApiServer } from "@/api/server/auth";
 import AccountMenu from "@/app/(navigation)/account/_components/AccountMenu";
 
 const AccountPage = async () => {
+  console.log("loading account page");
   await checkIsAuthServer();
 
   const user = await getMeApiServer();
