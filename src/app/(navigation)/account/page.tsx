@@ -1,7 +1,7 @@
 import AccountIcon from "@/icons/AccountIcon";
 import { checkIsAuthServer } from "@/utils/auth";
 import { getMeApiServer } from "@/api/server/auth";
-import AccountMenu from "@/app/account/_components/AccountMenu";
+import AccountMenu from "@/app/(navigation)/account/_components/AccountMenu";
 
 const AccountPage = async () => {
   await checkIsAuthServer();

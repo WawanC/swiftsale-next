@@ -8,6 +8,7 @@ import { useAddCartMutation } from "@/hooks/Cart";
 
 type Props = {
   product: Product;
+  darkMode?: boolean;
 };
 
 const ProductCard: FC<Props> = (props) => {

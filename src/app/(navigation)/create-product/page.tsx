@@ -1,18 +1,11 @@
-import { getProductApiServer } from "@/api/server/product";
 import { redirect } from "next/navigation";
-import EditProductForm from "@/app/edit-product/[productId]/_components/EditProductForm";
+import CreateProductForm from "@/app/(navigation)/create-product/_components/CreateProductForm";
 import { checkIsAuthServer } from "@/utils/auth";
 
-type Params = {
-  productId: string;
-};
-
-const EditProductPage = async ({ params }: { params: Params }) => {
+const CreateProductPage = async () => {
   await checkIsAuthServer();
 
   try {
-    const product = await getProductApiServer(params.productId);
-
     return (
       <main className={`flex-1 flex justify-center md:items-center`}>
         <section
@@ -20,10 +13,10 @@ const EditProductPage = async ({ params }: { params: Params }) => {
       flex flex-col gap-8 md:py-8`}
         >
           <h1 className={`hidden md:block text-4xl font-bold text-center`}>
-            Edit Product
+            Create Product
           </h1>
 
-          <EditProductForm product={product} />
+          <CreateProductForm />
         </section>
       </main>
     );
@@ -31,4 +24,4 @@ const EditProductPage = async ({ params }: { params: Params }) => {
     redirect("/");
   }
 };
-export default EditProductPage;
+export default CreateProductPage;

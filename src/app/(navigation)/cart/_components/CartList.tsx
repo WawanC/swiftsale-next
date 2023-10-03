@@ -1,7 +1,7 @@
 "use client";
 
 import { useGetCartsQuery } from "@/hooks/Cart";
-import CartItem from "@/app/cart/_components/CartItem";
+import CartItem from "@/app/(navigation)/cart/_components/CartItem";
 import LoadingIndicator from "@/app/_components/LoadingIndicator";
 
 const CartList = () => {

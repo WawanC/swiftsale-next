@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import { useAuthStore } from "@/store/auth";
 import { useGetProductsQuery } from "@/hooks/Product";
-import MyProductItem from "@/app/account/_components/MyProductItem";
+import MyProductItem from "@/app/(navigation)/account/_components/MyProductItem";
 import LoadingIndicator from "@/app/_components/LoadingIndicator";
 
 const MyProductList = () => {

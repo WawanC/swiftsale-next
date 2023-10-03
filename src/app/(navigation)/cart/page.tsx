@@ -1,5 +1,5 @@
-import CartList from "@/app/cart/_components/CartList";
-import CartInfo from "@/app/cart/_components/CartInfo";
+import CartList from "@/app/(navigation)/cart/_components/CartList";
+import CartInfo from "@/app/(navigation)/cart/_components/CartInfo";
 import { checkIsAuthServer } from "@/utils/auth";
 
 const CartPage = async () => {

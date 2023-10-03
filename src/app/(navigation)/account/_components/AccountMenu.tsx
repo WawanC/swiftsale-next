@@ -4,8 +4,8 @@ import { useCallback, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import AddIcon from "@/icons/AddIcon";
-import MyProductList from "@/app/account/_components/MyProductList";
-import MyTransactionList from "@/app/account/_components/MyTransactionList";
+import MyProductList from "@/app/(navigation)/account/_components/MyProductList";
+import MyTransactionList from "@/app/(navigation)/account/_components/MyTransactionList";
 
 enum Menu {
   Products = "products",
@@ -35,16 +35,20 @@ const AccountMenu = () => {
     <>
       <div className={`flex gap-2 md:gap-4 text-sm md:text-base`}>
         <button
-          className={`btn flex-1 bg-primary border-2 text-center ${
-            selectedMenu === Menu.Products && "bg-secondary border-none"
+          className={`btn flex-1 text-center ${
+            selectedMenu === Menu.Products
+              ? "bg-accent text-primary border-none"
+              : "bg-primary text-accent border-2"
           }`}
           onClick={() => changeMenu(Menu.Products)}
         >
           My Products
         </button>
         <button
-          className={`btn flex-1 bg-primary border-2 text-center ${
-            selectedMenu === Menu.Transactions && "bg-secondary border-none"
+          className={`btn flex-1 text-center ${
+            selectedMenu === Menu.Transactions
+              ? "bg-accent text-primary border-none"
+              : "bg-primary text-accent border-2"
           }`}
           onClick={() => changeMenu(Menu.Transactions)}
         >

@@ -1,7 +1,7 @@
 "use client";
 
 import { useGetTransactionsQuery } from "@/hooks/Transaction";
-import MyTransactionItem from "@/app/account/_components/MyTransactionItem";
+import MyTransactionItem from "@/app/(navigation)/account/_components/MyTransactionItem";
 import LoadingIndicator from "@/app/_components/LoadingIndicator";
 
 const MyTransactionList = () => {

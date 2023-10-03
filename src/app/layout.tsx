@@ -2,7 +2,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
-import NavBar from "@/app/_components/NavBar";
 import Providers from "@/app/providers";
 import { getMeApiServer } from "@/api/server/auth";
 import StoreInitializer from "@/store/StoreInitializer";
@@ -32,10 +31,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={font.className}>
         <StoreInitializer user={user} />
-        <Providers>
-          <NavBar />
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

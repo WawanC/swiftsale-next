@@ -21,7 +21,7 @@ const ProductsPage = async (props: Props) => {
   }
 
   return (
-    <main className={`flex-1 flex flex-col items-center gap-8 p-8`}>
+    <main className={`flex-1 flex flex-col items-center gap-8 py-8`}>
       {searchKeyword ? (
         <h1 className={`text-2xl md:text-4xl font-bold`}>
           Search : &quot;{searchKeyword}&quot;

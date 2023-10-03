@@ -1,7 +1,7 @@
 import { getProductApiServer } from "@/api/server/product";
 import AccountIcon from "@/icons/AccountIcon";
 import ProductPictureDisplay from "@/app/_components/ProductPictureDisplay";
-import AddCartInput from "@/app/products/[productId]/_components/AddCartInput";
+import AddCartInput from "@/app/(navigation)/products/[productId]/_components/AddCartInput";
 
 type Params = {
   productId: string;
