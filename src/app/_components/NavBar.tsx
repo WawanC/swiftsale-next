@@ -136,6 +136,11 @@ const NavBar = () => {
           Search
         </button>
 
+        <Link href={"/test"}>Test1</Link>
+        <Link href={"/test"} onClick={closeSideMenu}>
+          Test2
+        </Link>
+
         {user.isFetching ? (
           <span>Loading...</span>
         ) : !user.data ? (
