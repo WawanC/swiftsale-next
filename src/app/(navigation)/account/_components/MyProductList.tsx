@@ -1,20 +1,20 @@
 "use client";
 
 import { useMemo } from "react";
-import { useAuthStore } from "@/store/auth";
 import { useGetProductsQuery } from "@/hooks/Product";
 import MyProductItem from "@/app/(navigation)/account/_components/MyProductItem";
 import LoadingIndicator from "@/app/_components/LoadingIndicator";
+import { useGetMeQuery } from "@/hooks/Auth";
 
 const MyProductList = () => {
-  const user = useAuthStore((state) => state.user);
+  const user = useGetMeQuery();
   const getProducts = useGetProductsQuery();
 
   const myProducts = useMemo(() => {
     if (!getProducts.data || !user) return [];
 
     return getProducts.data.filter(
-      (product) => product.user.username === user.username,
+      (product) => product.user.username === user.data?.username,
     );
   }, [getProducts.data, user]);
 

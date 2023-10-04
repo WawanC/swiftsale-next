@@ -1,4 +1,4 @@
-import { LoginPayload, RegisterPayload } from "@/types/auth";
+import { GetMeResponse, LoginPayload, RegisterPayload } from "@/types/auth";
 import { apiClient, privateApiClient } from "@/api/client/axios";
 
 export const loginApiClient = async (data: LoginPayload) => {
@@ -11,4 +11,8 @@ export const registerApiClient = async (data: RegisterPayload) => {
 
 export const logoutApiClient = async () => {
   await privateApiClient.post("/auth/logout");
+};
+
+export const getMeApiClient = async () => {
+  return (await apiClient.get<GetMeResponse>("/auth/me")).data.user;
 };

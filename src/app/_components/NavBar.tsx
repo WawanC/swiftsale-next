@@ -8,8 +8,7 @@ import SearchBar from "@/app/_components/SearchBar";
 import { useMediaQuery } from "react-responsive";
 import AccountIcon from "@/icons/AccountIcon";
 import LogoutIcon from "@/icons/LogoutIcon";
-import { useLogoutMutation } from "@/hooks/Auth";
-import { useAuthStore } from "@/store/auth";
+import { useGetMeQuery, useLogoutMutation } from "@/hooks/Auth";
 import { useGetCartsQuery } from "@/hooks/Cart";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -20,7 +19,7 @@ const NavBar = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const router = useRouter();
 
-  const user = useAuthStore((state) => state.user);
+  const user = useGetMeQuery();
   const logout = useLogoutMutation();
 
   const getCarts = useGetCartsQuery();
@@ -137,7 +136,9 @@ const NavBar = () => {
           Search
         </button>
 
-        {user === null ? (
+        {user.isFetching ? (
+          <span>Loading...</span>
+        ) : !user.data ? (
           <>
             <Link
               href={"/login"}
