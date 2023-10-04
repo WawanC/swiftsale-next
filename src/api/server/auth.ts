@@ -10,6 +10,7 @@ export const getMeApiServer = async () => {
     headers: {
       Authorization: `Bearer ${accessToken.value}`,
     },
+    cache: "no-cache",
   });
   if (!response.ok) {
     throw new Error("Unauthorized Access");
