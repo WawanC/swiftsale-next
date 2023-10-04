@@ -15,7 +15,8 @@ const CartInfo = () => {
     await createTransaction.mutateAsync();
 
     router.refresh();
-    router.push("/account?menu=transactions");
+    // router.push("/account?menu=transactions");
+    router.push("/account");
   }, [createTransaction, router]);
 
   if (getCarts.isLoading)

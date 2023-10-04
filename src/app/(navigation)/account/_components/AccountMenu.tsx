@@ -1,7 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 import Link from "next/link";
 import AddIcon from "@/icons/AddIcon";
 import MyProductList from "@/app/(navigation)/account/_components/MyProductList";
@@ -13,21 +12,24 @@ enum Menu {
 }
 
 const AccountMenu = () => {
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
 
-  const selectedMenu = useMemo(
-    () =>
-      searchParams.has("menu") && searchParams.get("menu") === "transactions"
-        ? Menu.Transactions
-        : Menu.Products,
-    [searchParams],
-  );
+  // const selectedMenu = useMemo(
+  //   () =>
+  //     searchParams.has("menu") && searchParams.get("menu") === "transactions"
+  //       ? Menu.Transactions
+  //       : Menu.Products,
+  //   [searchParams],
+  // );
+
+  const [selectedMenu, setSelectedMenu] = useState<Menu>(Menu.Products);
 
   return (
     <>
       <div className={`flex gap-2 md:gap-4 text-sm md:text-base`}>
-        <Link
-          href={"/account?menu=products"}
+        <button
+          // href={"/account?menu=products"}
+          onClick={() => setSelectedMenu(Menu.Products)}
           className={`btn flex-1 text-center ${
             selectedMenu === Menu.Products
               ? "bg-accent text-primary border-none"
@@ -35,9 +37,10 @@ const AccountMenu = () => {
           }`}
         >
           My Products
-        </Link>
-        <Link
-          href={"/account?menu=transactions"}
+        </button>
+        <button
+          // href={"/account?menu=transactions"}
+          onClick={() => setSelectedMenu(Menu.Transactions)}
           className={`btn flex-1 text-center ${
             selectedMenu === Menu.Transactions
               ? "bg-accent text-primary border-none"
@@ -45,7 +48,7 @@ const AccountMenu = () => {
           }`}
         >
           My Transactions
-        </Link>
+        </button>
       </div>
 
       {/*  Menu Content */}
