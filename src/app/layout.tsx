@@ -5,6 +5,7 @@ import { ReactNode } from "react";
 import Providers from "@/app/providers";
 import { getMeApiServer } from "@/api/server/auth";
 import { User } from "@/types/user";
+import StoreInitializer from "@/store/StoreInitializer";
 
 const font = Inter({ subsets: ["latin"] });
 
@@ -34,8 +35,9 @@ export default async function RootLayout({
         <h1>
           ID: {randomId} ,User: {JSON.stringify(user)}
         </h1>
-        {/*<StoreInitializer user={user} />*/}
-        <Providers>{children}</Providers>
+        <Providers>
+          <StoreInitializer key={randomId}>{children}</StoreInitializer>
+        </Providers>
       </body>
     </html>
   );

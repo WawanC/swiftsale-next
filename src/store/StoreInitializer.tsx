@@ -1,16 +1,45 @@
 "use client";
-import { FC } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
+import { getMeApiClient } from "@/api/client/auth";
 import { useAuthStore } from "@/store/auth";
-import { User } from "@/types/user";
+import LoadingIndicator from "@/app/_components/LoadingIndicator";
 
 type Props = {
-  user: User | null;
+  children: ReactNode;
 };
 
 const StoreInitializer: FC<Props> = (props) => {
-  useAuthStore.setState({ user: props.user });
+  const user = useAuthStore((state) => state.user);
+  const [isLoading, setIsLoading] = useState(false);
 
-  return null;
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        setIsLoading(true);
+        const user = await getMeApiClient();
+        useAuthStore.setState({ user: user });
+      } catch (e) {
+        useAuthStore.setState({ user: null });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchUser().then((_) => null);
+  }, []);
+
+  if (isLoading)
+    return (
+      <main className={`flex-1 flex justify-center items-center`}>
+        <LoadingIndicator size={75} />
+      </main>
+    );
+
+  return (
+    <>
+      <span>AuthStore User : {JSON.stringify(user)} </span>
+      {props.children}
+    </>
+  );
 };
 
 export default StoreInitializer;
