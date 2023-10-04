@@ -8,9 +8,7 @@ import {
 } from "@/api/client/auth";
 
 export const useLoginMutation = () => {
-  return useMutation(loginApiClient, {
-    onSettled: () => (window.location.href = "/"),
-  });
+  return useMutation(loginApiClient);
 };
 
 export const useRegisterMutation = () => useMutation(registerApiClient);
