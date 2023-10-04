@@ -6,6 +6,7 @@ import {
   logoutApiClient,
   registerApiClient,
 } from "@/api/client/auth";
+import { useRouter } from "next/navigation";
 
 export const useLoginMutation = () => {
   return useMutation(loginApiClient);
@@ -14,7 +15,11 @@ export const useLoginMutation = () => {
 export const useRegisterMutation = () => useMutation(registerApiClient);
 
 export const useLogoutMutation = () => {
+  const router = useRouter();
   return useMutation(logoutApiClient, {
-    onSettled: () => window.location.reload(),
+    onSettled: () => {
+      router.refresh();
+      router.replace("/");
+    },
   });
 };

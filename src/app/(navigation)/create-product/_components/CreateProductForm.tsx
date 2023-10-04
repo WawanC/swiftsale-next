@@ -1,17 +1,10 @@
 "use client";
 
 import { Picture } from "@/types/product";
-import {
-  FormEventHandler,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { FormEventHandler, useCallback, useMemo, useState } from "react";
 import ProductPictureDisplay from "@/app/_components/ProductPictureDisplay";
 import { useCreateProductMutation } from "@/hooks/Product";
 import { useRouter } from "next/navigation";
-import { PrefetchKind } from "next/dist/client/components/router-reducer/router-reducer-types";
 import LoadingIndicator from "@/app/_components/LoadingIndicator";
 
 const CreateProductForm = () => {
@@ -41,12 +34,14 @@ const CreateProductForm = () => {
           pictures: pictures,
         });
 
-        window.location.href = "/";
+        router.refresh();
+        router.push("/");
       } catch (e) {
         console.error(e);
       }
     },
     [
+      router,
       enteredTitle,
       enteredPrice,
       enteredDescription,
@@ -69,10 +64,6 @@ const CreateProductForm = () => {
 
     return temp;
   }, [enteredPictures]);
-
-  useEffect(() => {
-    router.prefetch("/", { kind: PrefetchKind.FULL });
-  }, [router]);
 
   if (createProduct.isLoading)
     return (

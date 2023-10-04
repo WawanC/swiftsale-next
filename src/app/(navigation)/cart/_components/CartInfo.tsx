@@ -2,9 +2,8 @@
 
 import { useGetCartsQuery } from "@/hooks/Cart";
 import { useCreateTransactionMutation } from "@/hooks/Transaction";
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { PrefetchKind } from "next/dist/client/components/router-reducer/router-reducer-types";
 import LoadingIndicator from "@/app/_components/LoadingIndicator";
 
 const CartInfo = () => {
@@ -14,12 +13,10 @@ const CartInfo = () => {
 
   const createTransactionHandler = useCallback(async () => {
     await createTransaction.mutateAsync();
+
+    router.refresh();
     router.push("/account?menu=transactions");
   }, [createTransaction, router]);
-
-  useEffect(() => {
-    router.prefetch("/account?menu=transactions", { kind: PrefetchKind.FULL });
-  }, [router]);
 
   if (getCarts.isLoading)
     return (

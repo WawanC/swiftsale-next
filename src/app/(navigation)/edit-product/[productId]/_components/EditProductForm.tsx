@@ -1,18 +1,10 @@
 "use client";
 
 import { Picture, Product } from "@/types/product";
-import {
-  FC,
-  FormEventHandler,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { FC, FormEventHandler, useCallback, useMemo, useState } from "react";
 import ProductPictureDisplay from "@/app/_components/ProductPictureDisplay";
 import { useUpdateProductMutation } from "@/hooks/Product";
 import { useRouter } from "next/navigation";
-import { PrefetchKind } from "next/dist/client/components/router-reducer/router-reducer-types";
 import LoadingIndicator from "@/app/_components/LoadingIndicator";
 
 type Props = {
@@ -66,12 +58,14 @@ const EditProductForm: FC<Props> = (props) => {
           },
         });
 
-        window.location.href = "/";
+        router.refresh();
+        router.push("/");
       } catch (e) {
         console.error(e);
       }
     },
     [
+      router,
       enteredTitle,
       enteredPrice,
       enteredDescription,
@@ -80,10 +74,6 @@ const EditProductForm: FC<Props> = (props) => {
       props.product.id,
     ],
   );
-
-  useEffect(() => {
-    router.prefetch("/", { kind: PrefetchKind.FULL });
-  }, [router]);
 
   if (updateProduct.isLoading)
     return (

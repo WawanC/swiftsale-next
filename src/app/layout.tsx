@@ -19,7 +19,6 @@ export default async function RootLayout({
 }: {
   children: ReactNode;
 }) {
-  console.log("Loading app");
   let user: User | null = null;
 
   try {

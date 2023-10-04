@@ -1,11 +1,10 @@
 "use client";
 
-import { FormEventHandler, useEffect, useMemo, useState } from "react";
+import { FormEventHandler, useMemo, useState } from "react";
 import Link from "next/link";
 import { useLoginMutation } from "@/hooks/Auth";
 import { useRouter } from "next/navigation";
 import { getServerErrorMessage } from "@/utils/error";
-import { PrefetchKind } from "next/dist/client/components/router-reducer/router-reducer-types";
 
 const LoginPage = () => {
   const [enteredUsername, setEnteredUsername] = useState("");
@@ -24,16 +23,14 @@ const LoginPage = () => {
         username: enteredUsername.trim(),
         password: enteredPassword.trim(),
       });
+
+      router.refresh();
       router.replace("/");
     } catch (e) {
       setEnteredPassword("");
       console.error(e);
     }
   };
-
-  useEffect(() => {
-    router.prefetch("/", { kind: PrefetchKind.FULL });
-  }, [router]);
 
   const displayedError = useMemo(
     () => error || (login.isError && getServerErrorMessage(login.error)),
