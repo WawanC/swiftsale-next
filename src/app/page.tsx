@@ -1,15 +1,13 @@
 import { getProductsApiServer } from "@/api/server/product";
 import ProductList from "@/app/_components/ProductList";
-import { checkIsAuthServer } from "@/utils/auth";
-import Landing from "@/app/_components/Landing";
 import NavBar from "@/app/_components/NavBar";
 
 const Home = async () => {
-  try {
-    await checkIsAuthServer();
-  } catch (e) {
-    return <Landing />;
-  }
+  // try {
+  //   await checkIsAuthServer();
+  // } catch (e) {
+  //   return <Landing />;
+  // }
 
   const products = await getProductsApiServer();
 

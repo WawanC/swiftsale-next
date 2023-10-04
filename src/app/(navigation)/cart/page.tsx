@@ -1,9 +1,8 @@
 import CartList from "@/app/(navigation)/cart/_components/CartList";
 import CartInfo from "@/app/(navigation)/cart/_components/CartInfo";
-import { checkIsAuthServer } from "@/utils/auth";
 
 const CartPage = async () => {
-  await checkIsAuthServer();
+  // await checkIsAuthServer();
 
   return (
     <main className={`flex-1 flex justify-center md:py-16`}>
