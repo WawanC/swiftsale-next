@@ -9,7 +9,6 @@ type Props = {
 };
 
 const StoreInitializer: FC<Props> = (props) => {
-  const user = useAuthStore((state) => state.user);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -34,12 +33,7 @@ const StoreInitializer: FC<Props> = (props) => {
       </main>
     );
 
-  return (
-    <>
-      <span>AuthStore User : {JSON.stringify(user)} </span>
-      {props.children}
-    </>
-  );
+  return props.children;
 };
 
 export default StoreInitializer;

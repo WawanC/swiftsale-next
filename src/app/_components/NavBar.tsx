@@ -8,10 +8,11 @@ import SearchBar from "@/app/_components/SearchBar";
 import { useMediaQuery } from "react-responsive";
 import AccountIcon from "@/icons/AccountIcon";
 import LogoutIcon from "@/icons/LogoutIcon";
-import { useGetMeQuery, useLogoutMutation } from "@/hooks/Auth";
+import { useLogoutMutation } from "@/hooks/Auth";
 import { useGetCartsQuery } from "@/hooks/Cart";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useAuthStore } from "@/store/auth";
 
 const NavBar = () => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
@@ -19,7 +20,7 @@ const NavBar = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const router = useRouter();
 
-  const user = useGetMeQuery();
+  const user = useAuthStore((state) => state.user);
   const logout = useLogoutMutation();
 
   const getCarts = useGetCartsQuery();
@@ -123,7 +124,6 @@ const NavBar = () => {
           />
           <span>SwiftSale</span>
         </Link>
-
         {/* Search icon for mobile side navbar */}
         <button
           className={"md:hidden"}
@@ -135,10 +135,7 @@ const NavBar = () => {
         >
           Search
         </button>
-
-        {user.isFetching ? (
-          <span>Loading...</span>
-        ) : !user.data ? (
+        {!user ? (
           <>
             <Link
               href={"/login"}
