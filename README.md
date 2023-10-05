@@ -13,6 +13,14 @@ Fullstack e-commerce app created with Next JS and Nest JS
 
 NestJS server repository : [repo](https://github.com/WawanC/swift-sale)
 
+## Features
+
+- User can authenticate (login / register)
+- User can post a new product to sell
+- User can manage own products (edit/delete)
+- User can add others products to cart
+- User can buy products and complete transaction
+
 
 ## Tech Stack
 
